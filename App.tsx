@@ -43,9 +43,9 @@ const Navigation = ({
   setCurrentPage: (page: Page) => void;
   t: typeof translations['en'];
 }) => (
-  <nav className="w-full max-w-3xl mb-4">
+  <nav className="w-full max-w-4xl mb-6">
     <ul className="flex flex-wrap justify-center gap-2 md:gap-4">
-      {(['home', 'about', 'privacy', 'contact'] as Page[]).map((page) => (
+      {(['home', 'faq', 'guides', 'science', 'about', 'privacy', 'contact'] as Page[]).map((page) => (
         <li key={page}>
           <button
             onClick={() => setCurrentPage(page)}
@@ -65,15 +65,101 @@ const Navigation = ({
 
 // Footer Component
 const Footer = ({ t }: { t: typeof translations['en'] }) => (
-  <footer className="w-full max-w-3xl mt-8 pt-6 border-t border-gray-200 text-center text-gray-500 text-sm">
+  <footer className="w-full max-w-4xl mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
     <p>{t.footer.copyright}</p>
-    <p className="mt-1">{t.footer.madeWith}</p>
   </footer>
+);
+
+// FAQ Page Component
+const FAQPage = ({ t }: { t: typeof translations['en'] }) => (
+  <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
+    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">{t.faq.title}</h1>
+    <p className="text-gray-600 text-center mb-8">{t.faq.description}</p>
+    
+    <div className="space-y-6">
+      {t.faq.questions.map((faq, index) => (
+        <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0">
+          <h2 className="text-xl font-bold text-gray-800 mb-3">
+            <span className="text-blue-600">Q{index + 1}.</span> {faq.question}
+          </h2>
+          <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// Guides Page Component
+const GuidesPage = ({ t }: { t: typeof translations['en'] }) => (
+  <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
+    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">{t.guides.title}</h1>
+    <p className="text-gray-600 text-center mb-8">{t.guides.description}</p>
+    
+    <div className="space-y-8">
+      {t.guides.sections.map((section, index) => (
+        <section key={index} className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span className="text-3xl">{section.icon}</span>
+            {section.title}
+          </h2>
+          <div className="text-gray-600 leading-relaxed space-y-4">
+            {section.content.map((paragraph, pIndex) => (
+              <p key={pIndex}>{paragraph}</p>
+            ))}
+            {section.tips && (
+              <ul className="mt-4 space-y-2">
+                {section.tips.map((tip, tIndex) => (
+                  <li key={tIndex} className="flex items-start gap-2">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+);
+
+// Science Page Component
+const SciencePage = ({ t }: { t: typeof translations['en'] }) => (
+  <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
+    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">{t.science.title}</h1>
+    <p className="text-gray-600 text-center mb-8">{t.science.description}</p>
+    
+    <div className="space-y-8">
+      {t.science.sections.map((section, index) => (
+        <section key={index}>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span className="text-3xl">{section.icon}</span>
+            {section.title}
+          </h2>
+          <div className="text-gray-600 leading-relaxed space-y-3">
+            {section.content.map((paragraph, pIndex) => (
+              <p key={pIndex}>{paragraph}</p>
+            ))}
+          </div>
+          {section.keyPoints && (
+            <ul className="mt-4 space-y-2">
+              {section.keyPoints.map((point, pIndex) => (
+                <li key={pIndex} className="flex items-start gap-2 text-gray-700">
+                  <span className="text-blue-500 mt-1">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
+    </div>
+  </div>
 );
 
 // About Page Component
 const AboutPage = ({ t }: { t: typeof translations['en'] }) => (
-  <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
+  <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">{t.about.title}</h1>
 
     <section className="mb-8">
@@ -93,16 +179,41 @@ const AboutPage = ({ t }: { t: typeof translations['en'] }) => (
       </ul>
     </section>
 
+    <section className="mb-8">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">{t.about.whyImportant.title}</h2>
+      <p className="text-gray-600 leading-relaxed">{t.about.whyImportant.content}</p>
+    </section>
+
+    <section className="mb-8">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">{t.about.founders.title}</h2>
+      <div className="grid md:grid-cols-2 gap-4">
+        {t.about.founders.members.map((member, index) => (
+          <div key={index} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <h3 className="font-bold text-gray-900">{member.name}</h3>
+            <p className="text-sm text-gray-600 mb-2">{member.role}</p>
+            <p className="text-gray-600 text-sm">{member.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
     <section>
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">{t.about.team.title}</h2>
-      <p className="text-gray-600 leading-relaxed">{t.about.team.content}</p>
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">{t.about.history.title}</h2>
+      <div className="space-y-4">
+        {t.about.history.milestones.map((milestone, index) => (
+          <div key={index} className="flex gap-4">
+            <div className="flex-shrink-0 w-24 text-sm font-bold text-blue-600">{milestone.date}</div>
+            <p className="text-gray-600">{milestone.event}</p>
+          </div>
+        ))}
+      </div>
     </section>
   </div>
 );
 
 // Privacy Page Component
 const PrivacyPage = ({ t }: { t: typeof translations['en'] }) => (
-  <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
+  <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">{t.privacy.title}</h1>
     <p className="text-gray-500 text-center mb-8">{t.privacy.lastUpdated}</p>
 
@@ -128,7 +239,7 @@ const ContactPage = ({ t }: { t: typeof translations['en'] }) => {
   };
 
   return (
-    <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
+    <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 text-center">{t.contact.title}</h1>
       <p className="text-gray-600 text-center mb-8">{t.contact.description}</p>
 
@@ -151,6 +262,11 @@ const ContactPage = ({ t }: { t: typeof translations['en'] }) => {
             >
               github.com/dreamurl
             </a>
+          </div>
+
+          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h3 className="font-bold text-gray-800 mb-2">{t.contact.faq}</h3>
+            <p className="text-gray-600 text-sm">{t.contact.faqDescription}</p>
           </div>
         </div>
 
@@ -194,76 +310,41 @@ const ContactPage = ({ t }: { t: typeof translations['en'] }) => {
   );
 };
 
-// Content Sections Component
-const ContentSections = ({ t }: { t: typeof translations['en'] }) => (
-  <div className="w-full mt-8 space-y-8">
-    {/* What is Reaction Time */}
-    <section className="p-6 bg-blue-50 rounded-lg border border-blue-100">
-      <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-        <span className="text-2xl">🧠</span>
-        {t.content.whatIsReactionTime.title}
-      </h2>
-      <p className="text-gray-600 leading-relaxed">{t.content.whatIsReactionTime.description}</p>
-    </section>
-
-    {/* How to Play */}
-    <section className="p-6 bg-green-50 rounded-lg border border-green-100">
-      <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-        <span className="text-2xl">🎮</span>
-        {t.content.howToPlay.title}
-      </h2>
-      <ol className="space-y-2">
-        {t.content.howToPlay.steps.map((step, index) => (
-          <li key={index} className="flex items-start gap-3 text-gray-600">
-            <span className="flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
-              {index + 1}
-            </span>
-            <span>{step}</span>
-          </li>
-        ))}
-      </ol>
-    </section>
-
-    {/* How to Improve */}
-    <section className="p-6 bg-yellow-50 rounded-lg border border-yellow-100">
-      <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-        <span className="text-2xl">💪</span>
-        {t.content.howToImprove.title}
-      </h2>
-      <ul className="space-y-2">
-        {t.content.howToImprove.tips.map((tip, index) => (
-          <li key={index} className="flex items-start gap-2 text-gray-600">
-            <span className="text-yellow-500 mt-1">•</span>
-            <span>{tip}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    {/* Fun Facts */}
-    <section className="p-6 bg-purple-50 rounded-lg border border-purple-100">
-      <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-        <span className="text-2xl">✨</span>
-        {t.content.funFacts.title}
-      </h2>
-      <ul className="space-y-2">
-        {t.content.funFacts.facts.map((fact, index) => (
-          <li key={index} className="flex items-start gap-2 text-gray-600">
-            <span className="text-purple-500 mt-1">★</span>
-            <span>{fact}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
+// Hero Section Component
+const HeroSection = ({ t, onStartGame }: { t: typeof translations['en']; onStartGame: () => void }) => (
+  <div className="w-full max-w-4xl bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 md:p-12 text-white mb-8">
+    <div className="text-center">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4">{t.hero.title}</h1>
+      <p className="text-xl md:text-2xl mb-6 opacity-90">{t.hero.subtitle}</p>
+      <p className="text-lg opacity-80 mb-8 max-w-2xl mx-auto">{t.hero.description}</p>
+      <button
+        onClick={onStartGame}
+        className="px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg"
+      >
+        {t.hero.cta}
+      </button>
+    </div>
   </div>
 );
 
-// Home Page Component (Game)
-const HomePage = ({
-  t
-}: {
-  t: typeof translations['en'];
-}) => {
+// Quick Tips Component
+const QuickTips = ({ t }: { t: typeof translations['en'] }) => (
+  <div className="w-full max-w-4xl mb-8">
+    <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">{t.quickTips.title}</h2>
+    <div className="grid md:grid-cols-3 gap-6">
+      {t.quickTips.tips.map((tip, index) => (
+        <div key={index} className="p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+          <div className="text-4xl mb-4">{tip.icon}</div>
+          <h3 className="font-bold text-gray-900 mb-2">{tip.title}</h3>
+          <p className="text-gray-600 text-sm">{tip.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// Game Section Component
+const GameSection = ({ t }: { t: typeof translations['en'] }) => {
   const [gameState, setGameState] = useState<GameState>('idle');
   const [round, setRound] = useState<number>(0);
   const [reactionTimes, setReactionTimes] = useState<number[]>([]);
@@ -342,6 +423,11 @@ const HomePage = ({
     setFinishReason(null);
     setGameState('waiting');
     scheduleNextTarget();
+    
+    // Scroll to game area
+    setTimeout(() => {
+      gameAreaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
   }, [scheduleNextTarget]);
 
   const handleNormalTargetClick = useCallback(() => {
@@ -399,15 +485,11 @@ const HomePage = ({
     : null;
 
   return (
-    <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8 flex flex-col items-center">
+    <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
       <header className="w-full text-center mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">{t.title}</h1>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">{t.title}</h2>
         <p className="text-gray-500 mt-2 min-h-[24px]">{getStatusMessage()}</p>
       </header>
-
-      <div className="w-full max-w-2xl text-center text-gray-600 mb-6 text-sm md:text-base px-2">
-        <p>{t.introduction}</p>
-      </div>
 
       <div
         ref={gameAreaRef}
@@ -445,7 +527,7 @@ const HomePage = ({
         )}
       </div>
 
-      <footer className="w-full mt-6 text-center min-h-[124px] flex items-center justify-center">
+      <div className="w-full mt-6 text-center min-h-[124px] flex items-center justify-center">
         {gameState === 'idle' && (
           <button
             onClick={startGame}
@@ -473,7 +555,7 @@ const HomePage = ({
             </button>
           </div>
         )}
-      </footer>
+      </div>
 
       {/* Grades Section */}
       <div className="w-full mt-8 pt-6 border-t border-gray-200">
@@ -501,8 +583,127 @@ const HomePage = ({
           ))}
         </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Content Sections */}
+// Additional Content Sections
+const ContentSections = ({ t }: { t: typeof translations['en'] }) => (
+  <div className="w-full max-w-4xl mt-8 space-y-8">
+    {/* What is Reaction Time */}
+    <section className="p-6 bg-blue-50 rounded-lg border border-blue-100">
+      <h2 className="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span className="text-3xl">🧠</span>
+        {t.content.whatIsReactionTime.title}
+      </h2>
+      <p className="text-gray-600 leading-relaxed">{t.content.whatIsReactionTime.description}</p>
+    </section>
+
+    {/* How to Play */}
+    <section className="p-6 bg-green-50 rounded-lg border border-green-100">
+      <h2 className="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span className="text-3xl">🎮</span>
+        {t.content.howToPlay.title}
+      </h2>
+      <ol className="space-y-2">
+        {t.content.howToPlay.steps.map((step, index) => (
+          <li key={index} className="flex items-start gap-3 text-gray-600">
+            <span className="flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+              {index + 1}
+            </span>
+            <span>{step}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {/* How to Improve */}
+    <section className="p-6 bg-yellow-50 rounded-lg border border-yellow-100">
+      <h2 className="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span className="text-3xl">💪</span>
+        {t.content.howToImprove.title}
+      </h2>
+      <ul className="space-y-2">
+        {t.content.howToImprove.tips.map((tip, index) => (
+          <li key={index} className="flex items-start gap-2 text-gray-600">
+            <span className="text-yellow-500 mt-1">•</span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {/* Fun Facts */}
+    <section className="p-6 bg-purple-50 rounded-lg border border-purple-100">
+      <h2 className="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span className="text-3xl">✨</span>
+        {t.content.funFacts.title}
+      </h2>
+      <ul className="space-y-2">
+        {t.content.funFacts.facts.map((fact, index) => (
+          <li key={index} className="flex items-start gap-2 text-gray-600">
+            <span className="text-purple-500 mt-1">★</span>
+            <span>{fact}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {/* Pro Gamer Comparison */}
+    <section className="p-6 bg-orange-50 rounded-lg border border-orange-100">
+      <h2 className="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span className="text-3xl">🏆</span>
+        {t.content.proGamer.title}
+      </h2>
+      <div className="space-y-4">
+        {t.content.proGamer.games.map((game, index) => (
+          <div key={index} className="p-4 bg-white rounded-lg border border-orange-200">
+            <h3 className="font-bold text-gray-900 mb-2">{game.name}</h3>
+            <p className="text-gray-600 mb-2">{game.description}</p>
+            <div className="flex items-center gap-2 text-sm">
+              <span className="font-bold text-orange-600">Avg: {game.avgReaction}</span>
+              <span className="text-gray-500">|</span>
+              <span className="text-gray-600">{game.topPlayers}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Age and Reaction Time */}
+    <section className="p-6 bg-pink-50 rounded-lg border border-pink-100">
+      <h2 className="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span className="text-3xl">📊</span>
+        {t.content.ageReaction.title}
+      </h2>
+      <p className="text-gray-600 mb-4">{t.content.ageReaction.description}</p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {t.content.ageReaction.ages.map((age, index) => (
+          <div key={index} className="p-3 bg-white rounded-lg border border-pink-200 text-center">
+            <div className="font-bold text-gray-900">{age.range}</div>
+            <div className="text-sm text-gray-600">{age.avgTime}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+);
+
+// Home Page Component
+const HomePage = ({ t }: { t: typeof translations['en'] }) => {
+  const gameSectionRef = useRef<HTMLDivElement>(null);
+  
+  const scrollToGame = useCallback(() => {
+    gameSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, []);
+
+  return (
+    <div className="w-full flex flex-col items-center">
+      <HeroSection t={t} onStartGame={scrollToGame} />
+      <QuickTips t={t} />
+      <div ref={gameSectionRef}>
+        <GameSection t={t} />
+      </div>
       <ContentSections t={t} />
     </div>
   );
@@ -518,6 +719,12 @@ const App = () => {
     switch (currentPage) {
       case 'home':
         return <HomePage t={t} />;
+      case 'faq':
+        return <FAQPage t={t} />;
+      case 'guides':
+        return <GuidesPage t={t} />;
+      case 'science':
+        return <SciencePage t={t} />;
       case 'about':
         return <AboutPage t={t} />;
       case 'privacy':
@@ -532,7 +739,7 @@ const App = () => {
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen flex flex-col items-center justify-start p-4 font-sans">
       {/* Language Selector */}
-      <div className="w-full max-w-3xl flex justify-center mb-4 space-x-2">
+      <div className="w-full max-w-4xl flex justify-center mb-4 space-x-2">
         {LANGUAGES.map(({ code, name, flag }) => (
           <button
             key={code}

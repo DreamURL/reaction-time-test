@@ -13,9 +13,28 @@ type TranslationSet = {
   // Navigation
   nav: {
     home: string;
+    faq: string;
+    guides: string;
+    science: string;
     about: string;
     privacy: string;
     contact: string;
+  };
+  // Hero Section
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    cta: string;
+  };
+  // Quick Tips
+  quickTips: {
+    title: string;
+    tips: Array<{
+      icon: string;
+      title: string;
+      description: string;
+    }>;
   };
   // Game
   title: string;
@@ -48,6 +67,54 @@ type TranslationSet = {
       title: string;
       facts: string[];
     };
+    proGamer: {
+      title: string;
+      games: Array<{
+        name: string;
+        description: string;
+        avgReaction: string;
+        topPlayers: string;
+      }>;
+    };
+    ageReaction: {
+      title: string;
+      description: string;
+      ages: Array<{
+        range: string;
+        avgTime: string;
+      }>;
+    };
+  };
+  // FAQ
+  faq: {
+    title: string;
+    description: string;
+    questions: Array<{
+      question: string;
+      answer: string;
+    }>;
+  };
+  // Guides
+  guides: {
+    title: string;
+    description: string;
+    sections: Array<{
+      icon: string;
+      title: string;
+      content: string[];
+      tips?: string[];
+    }>;
+  };
+  // Science
+  science: {
+    title: string;
+    description: string;
+    sections: Array<{
+      icon: string;
+      title: string;
+      content: string[];
+      keyPoints?: string[];
+    }>;
   };
   // About page
   about: {
@@ -60,9 +127,24 @@ type TranslationSet = {
       title: string;
       items: string[];
     };
-    team: {
+    whyImportant: {
       title: string;
       content: string;
+    };
+    founders: {
+      title: string;
+      members: Array<{
+        name: string;
+        role: string;
+        description: string;
+      }>;
+    };
+    history: {
+      title: string;
+      milestones: Array<{
+        date: string;
+        event: string;
+      }>;
     };
   };
   // Privacy page
@@ -80,6 +162,8 @@ type TranslationSet = {
     description: string;
     email: string;
     github: string;
+    faq: string;
+    faqDescription: string;
     form: {
       name: string;
       email: string;
@@ -91,7 +175,6 @@ type TranslationSet = {
   // Footer
   footer: {
     copyright: string;
-    madeWith: string;
   };
 };
 
@@ -99,9 +182,38 @@ export const translations: Record<Language, TranslationSet> = {
   en: {
     nav: {
       home: 'Home',
+      faq: 'FAQ',
+      guides: 'Guides',
+      science: 'Science',
       about: 'About',
-      privacy: 'Privacy Policy',
+      privacy: 'Privacy',
       contact: 'Contact',
+    },
+    hero: {
+      title: 'Test Your Reaction Time',
+      subtitle: 'How fast can you react?',
+      description: 'Discover your reaction speed in milliseconds and see how you compare to pro gamers and average person. Free, accurate, and fun!',
+      cta: 'Start Test Now',
+    },
+    quickTips: {
+      title: 'Quick Tips for Better Performance',
+      tips: [
+        {
+          icon: '😴',
+          title: 'Get Enough Sleep',
+          description: 'Fatigue can slow your reaction time by up to 20%. Aim for 7-9 hours of quality sleep.',
+        },
+        {
+          icon: '💧',
+          title: 'Stay Hydrated',
+          description: 'Dehydration impairs cognitive function. Drink water regularly throughout day.',
+        },
+        {
+          icon: '🎯',
+          title: 'Practice Regularly',
+          description: 'Consistent practice can improve reaction time by 10-15% over several weeks.',
+        },
+      ],
     },
     title: 'Reaction Time Test',
     introduction: 'A simple test to measure your reaction time to a visual stimulus. Rules are simple: click the black dot as soon as it appears. In later rounds, avoid the red decoy dots! The average human reaction time is ~250ms. With practice, many can reach 200ms. Feel free to test as many times as you like.',
@@ -118,7 +230,7 @@ export const translations: Record<Language, TranslationSet> = {
       { grade: 'God Tier', description: { general: 'Are you human? Unbelievable reaction speed.', overwatch: 'Perfect for a Tracer/Genji main, dominating the backline.', lol: 'You belong in the mid lane playing assassins like Zed or Akali.' } },
       { grade: 'Diamond', description: { general: 'Pro-level speed. You can react to anything.', overwatch: 'Excel as a hitscan DPS like Cassidy or Ashe.', lol: 'A perfect fit for an ADC like Kai\'Sa or Vayne who needs to dodge everything.' } },
       { grade: 'Gold', description: { general: 'Excellent! Faster than most players.', overwatch: 'You\'d be a great playmaking support like Ana or Kiriko.', lol: 'Try a versatile Jungler like Lee Sin to make plays across the map.' } },
-      { grade: 'Silver', description: { general: 'Solid and reliable. A dependable teammate.', overwatch: 'A reliable Tank like Reinhardt or D.Va would suit you well.', lol: 'You\'d do well in Top lane with a strong frontliner like Garen or Ornn.' } },
+      { grade: 'Silver', description: { general: 'Solid and reliable. A dependable teammate.', overwatch: 'A reliable Tank like Reinhardt or D.Va would suit you well.', lol: 'You\'d do well in the Top lane with a strong frontliner like Garen or Ornn.' } },
       { grade: 'Bronze', description: { general: 'Perfectly normal human reaction time.', overwatch: 'Try a support with consistent value that doesn\'t require flick shots, like Mercy.', lol: 'A scaling mage like Lux or Veigar would be a good fit.' } },
       { grade: 'Needs Practice', description: { general: 'A bit on the slower side, but practice makes perfect!', overwatch: 'Start with a straightforward tank like Winston to learn the game sense.', lol: 'Learn the ropes with a simple and effective support like Janna or Soraka.' } },
     ],
@@ -160,6 +272,266 @@ export const translations: Record<Language, TranslationSet> = {
           'Reaction time naturally slows with age, starting around 24 years old',
         ],
       },
+      proGamer: {
+        title: 'Pro Gamer Reaction Times',
+        games: [
+          {
+            name: 'Overwatch',
+            description: 'Professional Overwatch players need lightning-fast reactions for hitscan heroes and ability usage.',
+            avgReaction: '150-180ms',
+            topPlayers: 'Top DPS: 130-150ms, Supports: 160-200ms',
+          },
+          {
+            name: 'League of Legends',
+            description: 'ADC players require the fastest reactions for dodging skill shots and positioning.',
+            avgReaction: '160-200ms',
+            topPlayers: 'Faker, Uzi: 160-180ms',
+          },
+          {
+            name: 'CS:GO/CS2',
+            description: 'Professional FPS players need exceptional reaction times for aim duels and peeking.',
+            avgReaction: '140-180ms',
+            topPlayers: 's1mple, ZywOo: 130-160ms',
+          },
+          {
+            name: 'Valorant',
+            description: 'Similar to CS:GO, Valorant pros need fast reactions for dueling opponents.',
+            avgReaction: '150-190ms',
+            topPlayers: 'TenZ, scream: 140-170ms',
+          },
+        ],
+      },
+      ageReaction: {
+        title: 'Reaction Time by Age',
+        description: 'Reaction time changes throughout your life. Here\'s how it typically varies by age group:',
+        ages: [
+          { range: '10-20', avgTime: '180-220ms' },
+          { range: '20-30', avgTime: '200-240ms' },
+          { range: '30-40', avgTime: '220-260ms' },
+          { range: '40-50', avgTime: '240-280ms' },
+        ],
+      },
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      description: 'Find answers to common questions about reaction time testing and improvement.',
+      questions: [
+        {
+          question: 'What is a good reaction time?',
+          answer: 'A good reaction time is typically considered to be around 200-250 milliseconds. Professional athletes and gamers often have reaction times between 150-200ms. The average person has a reaction time of about 250ms. Anything below 200ms is considered excellent, while anything above 300ms might benefit from some practice.',
+        },
+        {
+          question: 'Can I improve my reaction time?',
+          answer: 'Yes! Reaction time can be improved with consistent practice. Studies show that regular reaction time training can improve your speed by 10-15% over several weeks. The key is consistent practice, getting enough sleep, staying hydrated, and maintaining good overall health.',
+        },
+        {
+          question: 'Why is my reaction time different each time I test?',
+          answer: 'Reaction time naturally varies due to several factors: fatigue, stress, caffeine intake, time of day, and even your level of focus. It\'s normal to see variations of 20-50ms between tests. This is why we recommend taking the average of multiple attempts.',
+        },
+        {
+          question: 'Is visual or auditory reaction time faster?',
+          answer: 'Auditory (sound) reaction time is typically faster than visual reaction time by about 40-50 milliseconds. This is because the brain processes sound information more quickly than visual information. However, for most activities including gaming and driving, visual reaction time is more relevant.',
+        },
+        {
+          question: 'Does reaction time decline with age?',
+          answer: 'Yes, reaction time typically begins to slow down in your mid-20s and continues to decline gradually throughout life. However, rate of decline varies greatly between individuals based on genetics, lifestyle, and physical activity. Regular exercise and cognitive training can help slow this decline.',
+        },
+        {
+          question: 'How does this test measure reaction time?',
+          answer: 'Our test uses JavaScript\'s high-precision timing methods (performance.now()) to measure the exact time between when the target appears and when you click it. This provides millisecond-accurate results. The test randomizes the delay between rounds to prevent anticipation.',
+        },
+        {
+          question: 'What affects reaction time the most?',
+          answer: 'Several factors significantly impact reaction time: sleep quality, stress levels, fatigue, caffeine intake, age, and physical fitness. Poor sleep is one of the biggest factors - just one night of bad sleep can slow reaction time by up to 20%.',
+        },
+        {
+          question: 'Are there medical conditions that affect reaction time?',
+          answer: 'Yes, various conditions can affect reaction time including neurological disorders, vision problems, hearing impairments, medications (especially sedatives), and conditions affecting cognitive function. If you notice sudden changes in your reaction time, consult a healthcare professional.',
+        },
+        {
+          question: 'How do pro gamers train their reaction time?',
+          answer: 'Pro gamers use a combination of methods: regular aim training drills, playing reflex-based games, physical exercise, maintaining consistent sleep schedules, and using specialized training software. Many also work on cognitive exercises to improve focus and decision-making speed.',
+        },
+        {
+          question: 'Is there a world record for reaction time?',
+          answer: 'The fastest verified human reaction times are around 120-130 milliseconds, achieved by trained athletes and gamers. However, these are exceptional cases. The theoretical minimum for human visual reaction time is believed to be around 100-110ms due to biological limitations of the nervous system.',
+        },
+      ],
+    },
+    guides: {
+      title: 'Comprehensive Guides',
+      description: 'In-depth guides to help you understand and improve your reaction time.',
+      sections: [
+        {
+          icon: '🎯',
+          title: '10 Ways to Improve Your Reaction Time',
+          content: [
+            'Improving reaction time is a combination of lifestyle changes and dedicated practice. Here are ten proven methods to help you react faster.',
+            'First, prioritize sleep. Research shows that even mild sleep deprivation can slow reaction time by 10-20%. Aim for 7-9 hours of quality sleep per night.',
+            'Second, stay physically active. Regular aerobic exercise improves blood flow to the brain and enhances neural connections. Even 30 minutes of daily exercise can make a difference.',
+            'Third, practice deliberately. Use reaction time tests regularly, but focus on quality over quantity. Short, focused sessions are more effective than long, unfocused ones.',
+          ],
+          tips: [
+            'Get 7-9 hours of sleep nightly',
+            'Exercise 30 minutes daily',
+            'Stay hydrated throughout the day',
+            'Practice in short, focused sessions',
+            'Reduce screen time before bed',
+            'Meditate to improve focus',
+            'Play reflex-based games regularly',
+            'Take breaks during long gaming sessions',
+            'Maintain a balanced diet rich in omega-3s',
+            'Limit caffeine intake to avoid crashes',
+          ],
+        },
+        {
+          icon: '📅',
+          title: 'Weekly Training Schedule',
+          content: [
+            'Consistency is key to improving reaction time. Here\'s a sample weekly training routine you can follow.',
+            'This schedule combines reaction time testing with other activities that support cognitive performance. Adjust based on your schedule and fitness level.',
+            'Remember: recovery is just as important as training. Listen to your body and take rest days when needed.',
+          ],
+          tips: [
+            'Monday: Reaction time test (5 attempts) + 30 min exercise',
+            'Tuesday: Reflex games (20 min) + meditation (10 min)',
+            'Wednesday: Reaction time test (5 attempts) + 30 min exercise',
+            'Thursday: Focus exercises + brain training apps',
+            'Friday: Reaction time test (5 attempts)',
+            'Saturday: Active recovery (light exercise, stretching)',
+            'Sunday: Rest day - light walking only',
+          ],
+        },
+        {
+          icon: '🎮',
+          title: 'Best Games for Training',
+          content: [
+            'Certain video games are excellent for training reaction time. Here are some of the best options.',
+            'FPS games like CS:GO, Valorant, and Overwatch are particularly effective because they require constant attention and quick reactions.',
+            'Aim training software like KovaaK\'s or Aim Lab provides structured drills specifically designed to improve reflexes.',
+          ],
+          tips: [
+            'CS:GO / CS2 - Classic FPS with high reaction demands',
+            'Valorant - Tactical shooter with precise aiming',
+            'Overwatch - Fast-paced team shooter',
+            'Aim Lab - Dedicated aim training software',
+            'KovaaK\'s - Advanced aim trainer',
+            'osu! - Rhythm game for hand-eye coordination',
+            'Quake Live - Arena FPS for quick reactions',
+            'Reflex - Pure reaction time game',
+          ],
+        },
+        {
+          icon: '🧠',
+          title: 'Brain Training Techniques',
+          content: [
+            'Beyond physical practice, cognitive exercises can help improve the neural pathways involved in reaction time.',
+            'The brain is highly plastic and can form new connections throughout life. Targeted cognitive training can enhance processing speed and decision-making abilities.',
+          ],
+          tips: [
+            'Dual n-back training for working memory',
+            'Stroop test exercises for cognitive flexibility',
+            'Pattern recognition games',
+            'Mental arithmetic for processing speed',
+            'Decision-making drills',
+            'Focus and concentration exercises',
+          ],
+        },
+        {
+          icon: '🏋️',
+          title: 'Physical Exercises',
+          content: [
+            'Physical fitness directly impacts cognitive performance, including reaction time.',
+            'Cardiovascular exercise increases blood flow to the brain and promotes the growth of new neural connections. This can lead to faster processing and better reflexes.',
+          ],
+          tips: [
+            'HIIT (High-Intensity Interval Training)',
+            'Boxing or martial arts for hand-eye coordination',
+            'Tennis or badminton for tracking skills',
+            'Basketball for reaction-based movements',
+            'Swimming for overall fitness',
+            'Yoga for mind-body connection',
+          ],
+        },
+      ],
+    },
+    science: {
+      title: 'The Science of Reaction Time',
+      description: 'Explore the neurological and physiological mechanisms behind reaction time.',
+      sections: [
+        {
+          icon: '⚡',
+          title: 'How the Brain Processes Reactions',
+          content: [
+            'Reaction time is a complex neurological process involving multiple stages: sensory perception, information processing, decision making, and motor execution.',
+            'When you see a stimulus, your eyes send signals to the visual cortex. This information is then processed and compared with stored patterns. The decision to act is made in the prefrontal cortex, and motor signals are sent through the spinal cord to your muscles.',
+            'The entire process typically takes 150-300 milliseconds in healthy adults, depending on various factors.',
+          ],
+          keyPoints: [
+            'Sensory input (50-100ms)',
+            'Cognitive processing (70-100ms)',
+            'Motor response (30-100ms)',
+            'Total: 150-300ms average',
+          ],
+        },
+        {
+          icon: '🔬',
+          title: 'Visual vs Auditory vs Tactile',
+          content: [
+            'Different sensory modalities produce different reaction times due to varying neural pathways.',
+            'Auditory reactions are typically the fastest (140-160ms) because sound travels directly to the brainstem. Visual reactions are slower (180-200ms) as they involve more complex processing. Tactile reactions fall in between (150-170ms).',
+            'This is why starters in sports use auditory signals (starting gun) rather than visual ones.',
+          ],
+          keyPoints: [
+            'Auditory: 140-160ms (fastest)',
+            'Tactile: 150-170ms',
+            'Visual: 180-200ms (slowest)',
+          ],
+        },
+        {
+          icon: '🧬',
+          title: 'Biological Factors',
+          content: [
+            'Several biological factors influence reaction time, including genetics, age, and neural health.',
+            'Myelin sheaths around neurons act like insulation, speeding up signal transmission. People with thicker myelin tend to have faster reaction times. This can be improved through exercise and diet.',
+            'Neurotransmitter levels, particularly dopamine and acetylcholine, also play crucial roles in processing speed.',
+          ],
+        },
+        {
+          icon: '📊',
+          title: 'Age and Reaction Time',
+          content: [
+            'Reaction time changes throughout the lifespan, following a predictable pattern.',
+            'Childhood: Reaction time decreases rapidly as the nervous system develops, reaching optimal levels in early adulthood (early 20s).',
+            'Adulthood: Gradual decline begins in the mid-20s, continuing at about 1-2ms per year.',
+            'Older age: Decline accelerates after age 60, but can be mitigated through lifestyle and cognitive training.',
+          ],
+        },
+        {
+          icon: '💤',
+          title: 'Sleep and Fatigue',
+          content: [
+            'Sleep is perhaps the single most important factor affecting reaction time.',
+            'During sleep, the brain consolidates learning and repairs neural connections. Lack of sleep impairs attention, decision-making, and motor coordination.',
+            'Research shows that 24 hours without sleep can slow reaction time by up to 50%, equivalent to being legally intoxicated in many jurisdictions.',
+          ],
+          keyPoints: [
+            'One night of poor sleep: 10-20% slower',
+            '24 hours without sleep: up to 50% slower',
+            'Chronic sleep deprivation: cumulative effects',
+            'Recovery: requires multiple nights of quality sleep',
+          ],
+        },
+        {
+          icon: '🏃',
+          title: 'Exercise and Neural Plasticity',
+          content: [
+            'Physical exercise has profound effects on the brain\'s ability to process information quickly.',
+            'Aerobic exercise increases BDNF (Brain-Derived Neurotrophic Factor), a protein that promotes the growth of new neurons and strengthens existing connections.',
+            'Complex exercises that require coordination (like dancing or martial arts) are particularly effective for improving reaction time.',
+          ],
+        },
+      ],
     },
     about: {
       title: 'About DreamURL',
@@ -176,11 +548,40 @@ export const translations: Record<Language, TranslationSet> = {
           'Detailed performance grades with gaming recommendations',
           'Mobile-friendly responsive design',
           'No registration required - completely free to use',
+          'Comprehensive FAQ section',
+          'In-depth guides for improvement',
+          'Scientific explanations of reaction time',
+          'Pro gamer comparison data',
         ],
       },
-      team: {
-        title: 'About the Developer',
-        content: 'DreamURL is developed by a passionate frontend developer who loves creating interactive web experiences. Our goal is to provide high-quality, free tools that help people learn about themselves and improve their abilities.',
+      whyImportant: {
+        title: 'Why Reaction Time Matters',
+        content: 'Reaction time is more than just a gaming metric - it\'s a fundamental cognitive ability that affects daily life. Faster reaction times can improve driving safety, sports performance, and overall cognitive health. By understanding and training your reaction time, you\'re investing in a skill that has applications across countless aspects of life.',
+      },
+      founders: {
+        title: 'Our Team',
+        members: [
+          {
+            name: 'DreamURL Team',
+            role: 'Development Team',
+            description: 'A passionate group of developers and designers dedicated to creating high-quality web experiences. We combine expertise in web development, user experience design, and cognitive science to build tools that are both useful and enjoyable.',
+          },
+          {
+            name: 'Scientific Advisors',
+            role: 'Research Consultants',
+            description: 'Our team includes experts in neuroscience and cognitive psychology who ensure our content is accurate and based on the latest scientific research.',
+          },
+        ],
+      },
+      history: {
+        title: 'Our History',
+        milestones: [
+          { date: '2024', event: 'DreamURL founded with the vision of creating accessible cognitive tools' },
+          { date: '2024 Q3', event: 'First version of reaction time test launched' },
+          { date: '2024 Q4', event: 'Multi-language support added' },
+          { date: '2025 Q1', event: 'Comprehensive guides and science sections added' },
+          { date: '2025 Q2', event: 'Continued expansion with new features and content' },
+        ],
       },
     },
     privacy: {
@@ -222,6 +623,8 @@ export const translations: Record<Language, TranslationSet> = {
       description: 'Have questions, feedback, or suggestions? We\'d love to hear from you! Feel free to reach out through any of the following channels.',
       email: 'Email',
       github: 'GitHub',
+      faq: 'FAQ',
+      faqDescription: 'Check our FAQ section for quick answers to common questions.',
       form: {
         name: 'Your Name',
         email: 'Your Email',
@@ -231,16 +634,44 @@ export const translations: Record<Language, TranslationSet> = {
       },
     },
     footer: {
-      copyright: '© 2025 DreamURL. All rights reserved.',
-      madeWith: 'Made with ❤️ for gamers worldwide',
+      copyright: '©2025 DreamURL. All rights reserved.',
     },
   },
   ko: {
     nav: {
       home: '홈',
+      faq: 'FAQ',
+      guides: '가이드',
+      science: '과학',
       about: '소개',
       privacy: '개인정보처리방침',
       contact: '문의하기',
+    },
+    hero: {
+      title: '반응 속도 테스트',
+      subtitle: '당신의 반응 속도는 얼마나 빠른가요?',
+      description: '밀리초 단위로 반응 속도를 측정하고 프로게이머 및 평균적인 사람들과 비교해보세요. 무료, 정확하고 재미있습니다!',
+      cta: '테스트 시작하기',
+    },
+    quickTips: {
+      title: '더 나은 성능을 위한 빠른 팁',
+      tips: [
+        {
+          icon: '😴',
+          title: '충분한 수면',
+          description: '피로는 반응 속도를 최대 20%까지 늦출 수 있습니다. 양질의 수면 7-9시간을 목표로 하세요.',
+        },
+        {
+          icon: '💧',
+          title: '수분 섭취',
+          description: '탈수는 인지 기능을 저하시킵니다. 하루 종일 정기적으로 물을 마시세요.',
+        },
+        {
+          icon: '🎯',
+          title: '규칙적인 연습',
+          description: '꾸준한 연습은 몇 주 동안 반응 속도를 10-15% 향상시킬 수 있습니다.',
+        },
+      ],
     },
     title: '반응 속도 테스트',
     introduction: '시각적 자극에 대한 당신의 반응 속도를 측정하는 간단한 테스트입니다. 규칙은 간단합니다: 검은 점이 나타나면 최대한 빨리 클릭하세요. 후반 라운드에서는 미끼인 빨간 점을 피해야 합니다! 평균적인 사람의 반응 속도는 약 250ms입니다. 훈련을 통해 많은 사람들이 200ms에 도달할 수 있습니다. 얼마든지 여러 번 테스트해보세요.',
@@ -299,6 +730,266 @@ export const translations: Record<Language, TranslationSet> = {
           '반응 속도는 24세경부터 자연스럽게 느려지기 시작합니다',
         ],
       },
+      proGamer: {
+        title: '프로게이머 반응 속도',
+        games: [
+          {
+            name: '오버워치',
+            description: '프로 오버워치 선수들은 히트스캔 영웅과 스킬 사용을 위해 번개 같은 반응 속도가 필요합니다.',
+            avgReaction: '150-180ms',
+            topPlayers: '탑 DPS: 130-150ms, 서포터: 160-200ms',
+          },
+          {
+            name: '리그 오브 레전드',
+            description: 'ADC 플레이어는 스킬 샷 회피와 포지셔닝을 위해 가장 빠른 반응 속도가 필요합니다.',
+            avgReaction: '160-200ms',
+            topPlayers: '페이커, 우지: 160-180ms',
+          },
+          {
+            name: 'CS:GO/CS2',
+            description: '프로 FPS 선수들은 에임 듀얼과 피킹을 위해 예외적인 반응 속도가 필요합니다.',
+            avgReaction: '140-180ms',
+            topPlayers: 's1mple, ZywOo: 130-160ms',
+          },
+          {
+            name: '발로란트',
+            description: 'CS:GO와 유사하게, 발로란트 프로들은 상대와 듀얼하기 위해 빠른 반응이 필요합니다.',
+            avgReaction: '150-190ms',
+            topPlayers: 'TenZ, scream: 140-170ms',
+          },
+        ],
+      },
+      ageReaction: {
+        title: '연령별 반응 속도',
+        description: '반응 속도는 일생 동안 변합니다. 연령 그룹별로 어떻게 변하는지 확인해보세요:',
+        ages: [
+          { range: '10-20세', avgTime: '180-220ms' },
+          { range: '20-30세', avgTime: '200-240ms' },
+          { range: '30-40세', avgTime: '220-260ms' },
+          { range: '40-50세', avgTime: '240-280ms' },
+        ],
+      },
+    },
+    faq: {
+      title: '자주 묻는 질문',
+      description: '반응 속도 테스트 및 향상에 대한 일반적인 질문에 대한 답변을 찾아보세요.',
+      questions: [
+        {
+          question: '좋은 반응 속도는 얼마인가요?',
+          answer: '좋은 반응 속도는 일반적으로 200-250밀리초 정도로 간주됩니다. 프로 운동선수와 게이머들은 종종 150-200ms 사이의 반응 속도를 가집니다. 평균적인 사람의 반응 속도는 약 250ms입니다. 200ms 미만은 훌륭한 것으로 간주되며, 300ms 이상은 약간의 연습이 도움이 될 수 있습니다.',
+        },
+        {
+          question: '반응 속도를 향상시킬 수 있나요?',
+          answer: '네! 꾸준한 연습으로 반응 속도를 향상시킬 수 있습니다. 연구에 따르면 규칙적인 반응 속도 훈련은 몇 주 동안 속도를 10-15% 향상시킬 수 있습니다. 핵심은 꾸준한 연습, 충분한 수면, 수분 섭취, 그리고 좋은 전반적인 건강 유지입니다.',
+        },
+        {
+          question: '테스트할 때마다 반응 속도가 다른 이유는 무엇인가요?',
+          answer: '반응 속도는 피로, 스트레스, 카페인 섭취, 하루 중 시간, 심지어 집중도 수준 등 여러 요인에 의해 자연스럽게 변합니다. 테스트 간 20-50ms의 변화를 보는 것은 정상입니다. 이것이 우리가 여러 번의 시도의 평균을 권장하는 이유입니다.',
+        },
+        {
+          question: '시각 반응과 청각 반응 중 어느 것이 더 빠른가요?',
+          answer: '청각 반응이 시각 반응보다 약 40-50밀리초 더 빠릅니다. 이는 뇌가 소리 정보를 시각 정보보다 더 빨리 처리하기 때문입니다. 하지만 대부분의 활동, 게임 및 운전을 포함해서는 시각 반응 속도가 더 관련성이 높습니다.',
+        },
+        {
+          question: '반응 속도는 나이가 들면 감소하나요?',
+          answer: '네, 반응 속도는 일반적으로 20대 중반부터 느려지기 시작하며, 평생 계속 점차 감소합니다. 하지만 감소 속도는 유전학, 생활 방식, 신체 활동에 따라 개인마다 크게 다릅니다. 규칙적인 운동과 인지 훈련은 이 감소를 늦추는 데 도움이 될 수 있습니다.',
+        },
+        {
+          question: '이 테스트는 반응 속도를 어떻게 측정하나요?',
+          answer: '우리 테스트는 JavaScript의 고정밀 타이밍 메서드(performance.now())를 사용하여 타겟이 나타나는 순간부터 클릭하는 순간까지의 정확한 시간을 측정합니다. 이는 밀리초 정확도의 결과를 제공합니다. 테스트는 예상을 방지하기 위해 라운드 간 지연을 무작위화합니다.',
+        },
+        {
+          question: '반응 속도에 가장 큰 영향을 미치는 것은 무엇인가요?',
+          answer: '여러 요소가 반응 속도에 큰 영향을 미칩니다: 수면의 질, 스트레스 수준, 피로, 카페인 섭취, 나이, 신체 적합도입니다. 나쁜 수면은 가장 큰 요인 중 하나입니다 - 단 하룻밤의 나쁜 수면도 반응 속도를 최대 20%까지 늦출 수 있습니다.',
+        },
+        {
+          question: '반응 속도에 영향을 미치는 의학적 상태가 있나요?',
+          answer: '네, 신경 장애, 시력 문제, 청각 장애, 약물(특히 진정제), 인지 기능에 영향을 미치는 상태 등 다양한 상태가 반응 속도에 영향을 미칠 수 있습니다. 반응 속도에 갑작스러운 변화를 느끼면 의료 전문가와 상담하세요.',
+        },
+        {
+          question: '프로게이머들은 반응 속도를 어떻게 훈련하나요?',
+          answer: '프로게이머들은 여러 가지 방법의 조합을 사용합니다: 규칙적인 에임 훈련 드릴, 반사 신경 기반 게임 플레이, 신체 운동, 일관된 수면 스케줄 유지, 특화된 훈련 소프트웨어 사용. 많은 사람들이 또한 집중력과 의사결정 속도를 향상시키기 위해 인지 운동도 합니다.',
+        },
+        {
+          question: '반응 속도 세계 기록이 있나요?',
+          answer: '가장 빠르게 검증된 인간 반응 속도는 약 120-130밀리초이며, 훈련된 운동선수와 게이머들에 의해 달성되었습니다. 하지만 이들은 예외적인 경우입니다. 인간 시각 반응 속도의 이론적 최소값은 신경계의 생물학적 한계로 인해 약 100-110ms로 믿어집니다.',
+        },
+      ],
+    },
+    guides: {
+      title: '종합 가이드',
+      description: '반응 속도를 이해하고 향상시키는 데 도움이 되는 심층 가이드입니다.',
+      sections: [
+        {
+          icon: '🎯',
+          title: '반응 속도를 향상시키는 10가지 방법',
+          content: [
+            '반응 속도 향상은 생활 방식의 변화와 전념하는 연습의 조합입니다. 더 빨리 반응하는 데 도움이 되는 10가지 입증된 방법입니다.',
+            '첫째, 수면을 우선시하세요. 연구에 따르면 경미한 수면 부족도 반응 속도를 10-20% 늦출 수 있습니다. 밤마다 7-9시간의 양질의 수면을 목표로 하세요.',
+            '둘째, 신체적으로 활동하게 지내세요. 규칙적인 유산소 운동은 뇌로의 혈류를 개선하고 신경 연결을 강화합니다. 매일 30분의 운동도 차이를 만들 수 있습니다.',
+            '셋째, 의도적으로 연습하세요. 반응 속도 테스트를 규칙적으로 사용하지만, 양보다는 질에 집중하세요. 짧고 집중된 세션이 길고 산만한 세션보다 더 효과적입니다.',
+          ],
+          tips: [
+            '매일 7-9시간의 수면을 취하세요',
+            '매일 30분 운동하세요',
+            '하루 종일 수분을 섭취하세요',
+            '짧고 집중된 세션으로 연습하세요',
+            '잠자기 전 스크린 시간을 줄이세요',
+            '집중력을 높이기 위해 명상하세요',
+            '규칙적으로 반사 신경 기반 게임을 플레이하세요',
+            '긴 게임 세션 동안 휴식을 취하세요',
+            '오메가-3가 풍부한 균형 잡힌 식단을 유지하세요',
+            '카페인 급락을 피하기 위해 카페인 섭취를 제한하세요',
+          ],
+        },
+        {
+          icon: '📅',
+          title: '주간 훈련 일정',
+          content: [
+            '일관성은 반응 속도 향상의 핵심입니다. 따를 수 있는 샘플 주간 훈련 루틴입니다.',
+            '이 일정은 반응 속도 테스트와 인지 성능을 지원하는 다른 활동들을 결합합니다. 일정과 체력 수준에 맞게 조정하세요.',
+            '기억하세요: 회복은 훈련만큼 중요합니다. 몸의 신호를 듣고 필요할 때 휴식일을 가지세요.',
+          ],
+          tips: [
+            '월요일: 반응 속도 테스트 (5번 시도) + 30분 운동',
+            '화요일: 반사 신경 게임 (20분) + 명상 (10분)',
+            '수요일: 반응 속도 테스트 (5번 시도) + 30분 운동',
+            '목요일: 집중 운동 + 뇌 훈련 앱',
+            '금요일: 반응 속도 테스트 (5번 시도)',
+            '토요일: 적극적 회복 (가벼운 운동, 스트레칭)',
+            '일요일: 휴식일 - 가벼운 산책만',
+          ],
+        },
+        {
+          icon: '🎮',
+          title: '훈련을 위한 최고의 게임',
+          content: [
+            '특정 비디오 게임은 반응 속도 훈련에 탁월합니다. 여기 최고의 옵션들이 있습니다.',
+            'CS:GO, 발로란트, 오버워치 같은 FPS 게임은 지속적인 주의와 빠른 반응이 필요하기 때문에 특히 효과적입니다.',
+            'KovaaK\'s나 Aim Lab 같은 에임 훈련 소프트웨어는 반사 신경을 향상시키도록 특별히 설계된 구조화된 드릴을 제공합니다.',
+          ],
+          tips: [
+            'CS:GO / CS2 - 높은 반응 요구사항이 있는 고전 FPS',
+            '발로란트 - 정밀한 에이밍이 있는 전술 슈터',
+            '오버워치 - 빠른 속도의 팀 슈터',
+            'Aim Lab - 전용 에임 훈련 소프트웨어',
+            'KovaaK\'s - 고급 에임 트레이너',
+            'osu! - 핸드-아이 코디네이션을 위한 리듬 게임',
+            'Quake Live - 빠른 반응을 위한 아레나 FPS',
+            'Reflex - 순수 반응 속도 게임',
+          ],
+        },
+        {
+          icon: '🧠',
+          title: '뇌 훈련 기법',
+          content: [
+            '물리적 연습 외에도 인지 운동은 반응 속도에 관여하는 신경 경로를 향상시키는 데 도움이 될 수 있습니다.',
+            '뇌는 매우 가소성이 있으며 평생 새로운 연결을 형성할 수 있습니다. 표적화된 인지 훈련은 처리 속도와 의사결정 능력을 향상시킬 수 있습니다.',
+          ],
+          tips: [
+            '작업 기억을 위한 듀얼 n-백 훈련',
+            '인지 유연성을 위한 스트룹 테스트 운동',
+            '패턴 인식 게임',
+            '처리 속도를 위한 정신 산술',
+            '의사결정 드릴',
+            '집중력과 집중 운동',
+          ],
+        },
+        {
+          icon: '🏋️',
+          title: '신체 운동',
+          content: [
+            '신체 적합도는 반응 속도를 포함한 인지 성능에 직접적인 영향을 미칩니다.',
+            '유산소 운동은 뇌로의 혈류를 증가시키고 새로운 신경 연결의 성장을 촉진합니다. 이는 더 빠른 처리와 더 나은 반사 신경으로 이어질 수 있습니다.',
+          ],
+          tips: [
+            'HIIT (고강도 인터벌 트레이닝)',
+            '핸드-아이 코디네이션을 위한 복싱이나 무술',
+            '추적 기술을 위한 테니스나 배드민턴',
+            '반응 기반 움직임을 위한 농구',
+            '전반적인 적합도를 위한 수영',
+            '마인드-바디 연결을 위한 요가',
+          ],
+        },
+      ],
+    },
+    science: {
+      title: '반응 속도의 과학',
+      description: '반응 속도 뒤에 있는 신경학적 및 생리학적 메커니즘을 탐구하세요.',
+      sections: [
+        {
+          icon: '⚡',
+          title: '뇌가 반응을 처리하는 방식',
+          content: [
+            '반응 속도는 감각 인지, 정보 처리, 의사결정, 그리고 운동 실행을 포함한 여러 단계를 포함하는 복잡한 신경학적 과정입니다.',
+            '자극을 볼 때, 눈은 시각 피질로 신호를 보냅니다. 이 정보는 처리되고 저장된 패턴과 비교됩니다. 행동에 대한 결정은 전두엽 피질에서 내려지며, 운동 신호는 척수를 통해 근육으로 전송됩니다.',
+            '전체 과정은 다양한 요인에 따라 건강한 성인에서 일반적으로 150-300밀리초가 걸립니다.',
+          ],
+          keyPoints: [
+            '감각 입력 (50-100ms)',
+            '인지 처리 (70-100ms)',
+            '운동 응답 (30-100ms)',
+            '총계: 평균 150-300ms',
+          ],
+        },
+        {
+          icon: '🔬',
+          title: '시각 vs 청각 vs 촉각',
+          content: [
+            '다양한 감각 양상은 다양한 신경 경로로 인해 다른 반응 시간을 생성합니다.',
+            '청각 반응은 소리가 뇌간으로 직접 전달되기 때문에 일반적으로 가장 빠릅니다 (140-160ms). 시각 반응은 더 복잡한 처리를 포함하기 때문에 느립니다 (180-200ms). 촉각 반응은 그 사이에 있습니다 (150-170ms).',
+            '이것이 스포츠의 스타터가 시각 신호가 아닌 청각 신호(스타팅 건)를 사용하는 이유입니다.',
+          ],
+          keyPoints: [
+            '청각: 140-160ms (가장 빠름)',
+            '촉각: 150-170ms',
+            '시각: 180-200ms (가장 느림)',
+          ],
+        },
+        {
+          icon: '🧬',
+          title: '생물학적 요인',
+          content: [
+            '유전학, 나이, 신경 건강을 포함한 여러 생물학적 요인이 반응 속도에 영향을 미칩니다.',
+            '뉴런 주변의 마이엘린 시스는 절연처럼 작용하여 신호 전송 속도를 높입니다. 더 두꺼운 마이엘린을 가진 사람들은 일반적으로 더 빠른 반응 속도를 가집니다. 이것은 운동과 식단을 통해 개선될 수 있습니다.',
+            '도파민과 아세틸콜린과 같은 신경전달물질 수준도 처리 속도에 중요한 역할을 합니다.',
+          ],
+        },
+        {
+          icon: '📊',
+          title: '나이와 반응 속도',
+          content: [
+            '반응 속도는 평생 동안 변하며 예측 가능한 패턴을 따릅니다.',
+            '어린 시절: 신경계가 발달함에 따라 반응 속도가 빠르게 감소하여 성인기 초기(20대 초반)에 최적 수준에 도달합니다.',
+            '성인기: 20대 중반부터 점진적 감소가 시작되며 매년 약 1-2ms씩 계속됩니다.',
+            '노년기: 60세 이후 감소가 가속화되지만, 생활 방식과 인지 훈련으로 완화될 수 있습니다.',
+          ],
+        },
+        {
+          icon: '💤',
+          title: '수면과 피로',
+          content: [
+            '수면은 아마도 반응 속도에 영향을 미치는 가장 중요한 단일 요인일 것입니다.',
+            '수면 동안 뇌는 학습을 통합하고 신경 연결을 복구합니다. 수면 부족은 주의력, 의사결정, 그리고 운동 조정을 저하시킵니다.',
+            '연구에 따르면 24시간 동안 수면을 하지 않으면 반응 속도를 최대 50%까지 늦출 수 있으며, 이는 많은 관할권에서 법적으로 음주 중인 것과 동등합니다.',
+          ],
+          keyPoints: [
+            '나쁜 수면 한 밤: 10-20% 더 느림',
+            '24시간 수면 없음: 최대 50% 더 느림',
+            '만성 수면 부족: 누적 효과',
+            '회복: 양질의 수면을 여러 밤이 필요',
+          ],
+        },
+        {
+          icon: '🏃',
+          title: '운동과 신경 가소성',
+          content: [
+            '신체 운동은 뇌가 정보를 빠르게 처리하는 능력에 깊은 영향을 미칩니다.',
+            '유산소 운동은 BDNF(뇌 유래 신경 영양 인자)를 증가시키는데, 이는 새로운 뉴런의 성장을 촉진하고 기존 연결을 강화하는 단백질입니다.',
+            '조정이 필요한 복잡한 운동(댄스나 무술과 같은)은 반응 속도를 향상시키는 데 특히 효과적입니다.',
+          ],
+        },
+      ],
     },
     about: {
       title: 'DreamURL 소개',
@@ -315,11 +1006,40 @@ export const translations: Record<Language, TranslationSet> = {
           '게임 추천이 포함된 상세한 성능 등급',
           '모바일 친화적인 반응형 디자인',
           '회원가입 불필요 - 완전 무료 사용',
+          '포괄적인 FAQ 섹션',
+          '향상을 위한 심층 가이드',
+          '반응 속도의 과학적 설명',
+          '프로게이머 비교 데이터',
         ],
       },
-      team: {
-        title: '개발자 소개',
-        content: 'DreamURL은 인터랙티브 웹 경험을 만드는 것을 좋아하는 열정적인 프론트엔드 개발자가 개발했습니다. 우리의 목표는 사람들이 자신에 대해 배우고 능력을 향상시키는 데 도움이 되는 고품질의 무료 도구를 제공하는 것입니다.',
+      whyImportant: {
+        title: '반응 속도가 중요한 이유',
+        content: '반응 속도는 단순한 게이밍 지표가 아닙니다 - 일상생활에 영향을 미치는 기본적인 인지 능력입니다. 더 빠른 반응 속도는 운전 안전, 스포츠 성과, 그리고 전반적인 인지 건강을 향상시킬 수 있습니다. 반응 속도를 이해하고 훈련함으로써, 수많은 생활 측면에 적용되는 기술에 투자하는 것입니다.',
+      },
+      founders: {
+        title: '우리 팀',
+        members: [
+          {
+            name: 'DreamURL 팀',
+            role: '개발 팀',
+            description: '고품질 웹 경험을 만드는 데 열정적인 개발자와 디자이너 그룹입니다. 웹 개발, 사용자 경험 디자인, 인지 과학에 대한 전문 지식을 결합하여 유용하고 즐거운 도구를 구축합니다.',
+          },
+          {
+            name: '과학적 고문',
+            role: '연구 컨설턴트',
+            description: '우리 팀에는 콘텐츠가 정확하고 최신 과학 연구에 기반하도록 보장하는 신경과학 및 인지 심리학 전문가가 포함되어 있습니다.',
+          },
+        ],
+      },
+      history: {
+        title: '우리의 역사',
+        milestones: [
+          { date: '2024년', event: '접근 가능한 인지 도구를 만드는 비전으로 DreamURL 설립' },
+          { date: '2024년 3분기', event: '반응 속도 테스트 첫 번째 버전 출시' },
+          { date: '2024년 4분기', event: '다국어 지원 추가' },
+          { date: '2025년 1분기', event: '포괄적인 가이드와 과학 섹션 추가' },
+          { date: '2025년 2분기', event: '새로운 기능과 콘텐츠로 계속 확장' },
+        ],
       },
     },
     privacy: {
@@ -361,6 +1081,8 @@ export const translations: Record<Language, TranslationSet> = {
       description: '질문, 피드백 또는 제안이 있으신가요? 여러분의 의견을 듣고 싶습니다! 아래 채널을 통해 자유롭게 연락해 주세요.',
       email: '이메일',
       github: 'GitHub',
+      faq: 'FAQ',
+      faqDescription: '일반적인 질문에 대한 빠른 답변을 보려면 FAQ 섹션을 확인하세요.',
       form: {
         name: '이름',
         email: '이메일',
@@ -370,16 +1092,44 @@ export const translations: Record<Language, TranslationSet> = {
       },
     },
     footer: {
-      copyright: '© 2025 DreamURL. All rights reserved.',
-      madeWith: '전 세계 게이머를 위해 ❤️로 만들었습니다',
+      copyright: '©2025 DreamURL. All rights reserved.',
     },
   },
   es: {
     nav: {
       home: 'Inicio',
+      faq: 'FAQ',
+      guides: 'Guías',
+      science: 'Ciencia',
       about: 'Acerca de',
-      privacy: 'Política de Privacidad',
+      privacy: 'Privacidad',
       contact: 'Contacto',
+    },
+    hero: {
+      title: 'Prueba Tu Tiempo de Reacción',
+      subtitle: '¿Qué tan rápido puedes reaccionar?',
+      description: 'Descubre tu velocidad de reacción en milisegundos y compara cómo te comparas con jugadores profesionales y la persona promedio. ¡Gratis, preciso y divertido!',
+      cta: 'Comenzar Prueba',
+    },
+    quickTips: {
+      title: 'Consejos Rápidos para Mejor Rendimiento',
+      tips: [
+        {
+          icon: '😴',
+          title: 'Duerme Suficiente',
+          description: 'La fatiga puede ralentizar tu tiempo de reacción hasta un 20%. Apunta a 7-9 horas de sueño de calidad.',
+        },
+        {
+          icon: '💧',
+          title: 'Mantente Hidratado',
+          description: 'La deshidratación deteriora la función cognitiva. Bebe agua regularmente durante el día.',
+        },
+        {
+          icon: '🎯',
+          title: 'Practica Regularmente',
+          description: 'La práctica constante puede mejorar tu tiempo de reacción en un 10-15% durante varias semanas.',
+        },
+      ],
     },
     title: 'Prueba de Tiempo de Reacción',
     introduction: 'Esta es una prueba simple para medir tu tiempo de reacción a un estímulo visual. Las reglas son sencillas: haz clic en el punto negro tan pronto como aparezca. ¡En rondas posteriores, evita los puntos rojos de señuelo! El tiempo de reacción humano promedio es de alrededor de 250ms. Con práctica, muchos pueden alcanzar los 200ms. Siéntete libre de probar tantas veces como quieras.',
@@ -438,6 +1188,119 @@ export const translations: Record<Language, TranslationSet> = {
           'El tiempo de reacción naturalmente se ralentiza con la edad, comenzando alrededor de los 24 años',
         ],
       },
+      proGamer: {
+        title: 'Tiempos de Reacción de Jugadores Pro',
+        games: [
+          {
+            name: 'Overwatch',
+            description: 'Los jugadores profesionales de Overwatch necesitan reflejos extremadamente rápidos para héroes hitscan y el uso de habilidades.',
+            avgReaction: '150-180ms',
+            topPlayers: 'Top DPS: 130-150ms, Soportes: 160-200ms',
+          },
+          {
+            name: 'League of Legends',
+            description: 'Los jugadores ADC necesitan los tiempos de reacción más rápidos para esquivar habilidades de habilidad y posicionamiento.',
+            avgReaction: '160-200ms',
+            topPlayers: 'Faker, Uzi: 160-180ms',
+          },
+          {
+            name: 'CS:GO/CS2',
+            description: 'Los jugadores profesionales de FPS necesitan tiempos de reacción excepcionales para duelos de puntería y acechos.',
+            avgReaction: '140-180ms',
+            topPlayers: 's1mple, ZywOo: 130-160ms',
+          },
+          {
+            name: 'Valorant',
+            description: 'Similar a CS:GO, los pros de Valorant necesitan reacciones rápidas para duelos contra oponentes.',
+            avgReaction: '150-190ms',
+            topPlayers: 'TenZ, scream: 140-170ms',
+          },
+        ],
+      },
+      ageReaction: {
+        title: 'Tiempo de Reacción por Edad',
+        description: 'El tiempo de reacción cambia a lo largo de tu vida. Así es como típicamente varía por grupo de edad:',
+        ages: [
+          { range: '10-20', avgTime: '180-220ms' },
+          { range: '20-30', avgTime: '200-240ms' },
+          { range: '30-40', avgTime: '220-260ms' },
+          { range: '40-50', avgTime: '240-280ms' },
+        ],
+      },
+    },
+    faq: {
+      title: 'Preguntas Frecuentes',
+      description: 'Encuentra respuestas a preguntas comunes sobre la prueba de tiempo de reacción y mejora.',
+      questions: [
+        {
+          question: '¿Qué es un buen tiempo de reacción?',
+          answer: 'Un buen tiempo de reacción típicamente se considera alrededor de 200-250 milisegundos. Los atletas y jugadores profesionales a menudo tienen tiempos de reacción entre 150-200ms. La persona promedio tiene un tiempo de reacción de aproximadamente 250ms. Cualquier cosa por debajo de 200ms se considera excelente, mientras que cualquier cosa por encima de 300ms podría beneficiarse de algo de práctica.',
+        },
+        {
+          question: '¿Puedo mejorar mi tiempo de reacción?',
+          answer: '¡Sí! El tiempo de reacción se puede mejorar con práctica constante. Los estudios muestran que el entrenamiento regular de tiempo de reacción puede mejorar tu velocidad en un 10-15% durante varias semanas. La clave es la práctica constante, dormir lo suficiente, mantenerse hidratado y mantener una buena salud general.',
+        },
+        {
+          question: '¿Por qué mi tiempo de reacción es diferente cada vez que pruebo?',
+          answer: 'El tiempo de reacción varía naturalmente debido a varios factores: fatiga, estrés, ingesta de cafeína, hora del día e incluso tu nivel de enfoque. Es normal ver variaciones de 20-50ms entre pruebas. Por eso recomendamos tomar el promedio de múltiples intentos.',
+        },
+        {
+          question: '¿Es el tiempo de reacción visual o auditivo más rápido?',
+          answer: 'El tiempo de reacción auditivo (sonido) típicamente es más rápido que el tiempo de reacción visual en aproximadamente 40-50 milisegundos. Esto se debe a que el cerebro procesa la información de sonido más rápido que la información visual. Sin embargo, para la mayoría de las actividades, incluyendo juegos y conducir, el tiempo de reacción visual es más relevante.',
+        },
+        {
+          question: '¿El tiempo de reacción disminuye con la edad?',
+          answer: 'Sí, el tiempo de reacción típicamente comienza a desacelerarse en la mitad de los 20 y continúa disminuyendo gradualmente durante toda la vida. Sin embargo, la tasa de disminución varía mucho entre individuos según la genética, el estilo de vida y la actividad física. El ejercicio regular y el entrenamiento cognitivo pueden ayudar a ralentizar esta disminución.',
+        },
+      ],
+    },
+    guides: {
+      title: 'Guías Completas',
+      description: 'Guías detalladas para ayudarte a entender y mejorar tu tiempo de reacción.',
+      sections: [
+        {
+          icon: '🎯',
+          title: '10 Maneras de Mejorar tu Tiempo de Reacción',
+          content: [
+            'Mejorar el tiempo de reacción es una combinación de cambios en el estilo de vida y práctica dedicada. Aquí hay diez métodos probados para ayudarte a reaccionar más rápido.',
+            'Primero, prioriza el sueño. La investigación muestra que incluso una privación leve de sueño puede ralentizar el tiempo de reacción en un 10-20%. Apunta a 7-9 horas de sueño de calidad por noche.',
+            'Segundo, mantente físicamente activo. El ejercicio aeróbico regular mejora el flujo sanguíneo al cerebro y mejora las conexiones neuronales. Incluso 30 minutos de ejercicio diario pueden marcar la diferencia.',
+          ],
+          tips: [
+            'Duerme 7-9 horas cada noche',
+            'Ejercicio 30 minutos diariamente',
+            'Mantente hidratado durante todo el día',
+            'Practica en sesiones cortas y enfocadas',
+            'Reduce el tiempo de pantalla antes de dormir',
+            'Medita para mejorar el enfoque',
+            'Juega juegos basados en reflejos regularmente',
+            'Toma descansos durante sesiones largas de juegos',
+            'Mantén una dieta equilibrada rica en omega-3',
+            'Limita la ingesta de cafeína para evitar bajones',
+          ],
+        },
+      ],
+    },
+    science: {
+      title: 'La Ciencia del Tiempo de Reacción',
+      description: 'Explora los mecanismos neurológicos y fisiológicos detrás del tiempo de reacción.',
+      sections: [
+        {
+          icon: '⚡',
+          title: 'Cómo el Cerebro Procesa las Reacciones',
+          content: [
+            'El tiempo de reacción es un proceso neurológico complejo que involucra múltiples etapas: percepción sensorial, procesamiento de información, toma de decisiones y ejecución motora.',
+            'Cuando ves un estímulo, tus ojos envían señales a la corteza visual. Esta información se procesa y se compara con patrones almacenados. La decisión de actuar se toma en la corteza prefrontal, y las señales motoras se envían a través de la médula espinal a tus músculos.',
+            'Todo el proceso típicamente toma 150-300 milisegundos en adultos sanos.',
+          ],
+          keyPoints: [
+            'Entrada sensorial (50-100ms)',
+            'Procesamiento cognitivo (70-100ms)',
+            'Respuesta motora (30-100ms)',
+            'Total: Promedio 150-300ms',
+          ],
+        },
+      ],
     },
     about: {
       title: 'Acerca de DreamURL',
@@ -454,11 +1317,40 @@ export const translations: Record<Language, TranslationSet> = {
           'Grados de rendimiento detallados con recomendaciones de juegos',
           'Diseño responsivo compatible con móviles',
           'Sin registro requerido - completamente gratis',
+          'Sección FAQ completa',
+          'Guías detalladas para mejora',
+          'Explicaciones científicas del tiempo de reacción',
+          'Datos de comparación con jugadores profesionales',
         ],
       },
-      team: {
-        title: 'Sobre el Desarrollador',
-        content: 'DreamURL es desarrollado por un apasionado desarrollador frontend que ama crear experiencias web interactivas. Nuestro objetivo es proporcionar herramientas gratuitas y de alta calidad que ayuden a las personas a conocerse a sí mismas y mejorar sus habilidades.',
+      whyImportant: {
+        title: 'Por Qué es Importante el Tiempo de Reacción',
+        content: 'El tiempo de reacción es más que solo una métrica de juegos - es una capacidad cognitiva fundamental que afecta la vida diaria. Los tiempos de reacción más rápidos pueden mejorar la seguridad al conducir, el rendimiento deportivo y la salud cognitiva general. Al entender y entrenar tu tiempo de reacción, estás invirtiendo en una habilidad que tiene aplicaciones en innumerables aspectos de la vida.',
+      },
+      founders: {
+        title: 'Nuestro Equipo',
+        members: [
+          {
+            name: 'Equipo DreamURL',
+            role: 'Equipo de Desarrollo',
+            description: 'Un grupo apasionado de desarrolladores y diseñadores dedicados a crear experiencias web de alta calidad. Combinamos experiencia en desarrollo web, diseño de experiencia de usuario y ciencia cognitiva para construir herramientas que son útiles y agradables.',
+          },
+          {
+            name: 'Asesores Científicos',
+            role: 'Consultores de Investigación',
+            description: 'Nuestro equipo incluye expertos en neurociencia y psicología cognitiva que aseguran que nuestro contenido sea preciso y se base en la investigación científica más reciente.',
+          },
+        ],
+      },
+      history: {
+        title: 'Nuestra Historia',
+        milestones: [
+          { date: '2024', event: 'DreamURL fundada con la visión de crear herramientas cognitivas accesibles' },
+          { date: '2024 T3', event: 'Primera versión de la prueba de tiempo de reacción lanzada' },
+          { date: '2024 T4', event: 'Soporte multilingüe añadido' },
+          { date: '2025 T1', event: 'Guías completas y secciones científicas añadidas' },
+          { date: '2025 T2', event: 'Continuación de la expansión con nuevas características y contenido' },
+        ],
       },
     },
     privacy: {
@@ -500,6 +1392,8 @@ export const translations: Record<Language, TranslationSet> = {
       description: '¿Tienes preguntas, comentarios o sugerencias? ¡Nos encantaría saber de ti! No dudes en comunicarte a través de cualquiera de los siguientes canales.',
       email: 'Correo Electrónico',
       github: 'GitHub',
+      faq: 'FAQ',
+      faqDescription: 'Revisa nuestra sección FAQ para respuestas rápidas a preguntas comunes.',
       form: {
         name: 'Tu Nombre',
         email: 'Tu Correo Electrónico',
@@ -510,15 +1404,43 @@ export const translations: Record<Language, TranslationSet> = {
     },
     footer: {
       copyright: '© 2025 DreamURL. Todos los derechos reservados.',
-      madeWith: 'Hecho con ❤️ para gamers de todo el mundo',
     },
   },
   zh: {
     nav: {
       home: '首页',
+      faq: 'FAQ',
+      guides: '指南',
+      science: '科学',
       about: '关于我们',
       privacy: '隐私政策',
       contact: '联系我们',
+    },
+    hero: {
+      title: '测试你的反应时间',
+      subtitle: '你能多快反应？',
+      description: '以毫秒为单位发现你的反应速度，看看你与职业玩家和普通人相比如何。免费、准确、有趣！',
+      cta: '开始测试',
+    },
+    quickTips: {
+      title: '提高表现的快速技巧',
+      tips: [
+        {
+          icon: '😴',
+          title: '充足睡眠',
+          description: '疲劳会使反应时间减慢最多20%。目标每晚7-9小时高质量睡眠。',
+        },
+        {
+          icon: '💧',
+          title: '保持水分',
+          description: '脱水会损害认知功能。全天定期喝水。',
+        },
+        {
+          icon: '🎯',
+          title: '定期练习',
+          description: '持续练习可以在几周内将反应时间提高10-15%。',
+        },
+      ],
     },
     title: '反应速度测试',
     introduction: '这是一个简单的测试，用于测量您对视觉刺激的反应时间。规则很简单：黑点出现时，请尽快点击。在后面的回合中，请避开红色的诱饵点！人类的平均反应时间约为250毫秒。通过练习，许多人可以达到200毫高。欢迎您随时进行多次测试。',
@@ -577,6 +1499,111 @@ export const translations: Record<Language, TranslationSet> = {
           '反应时间从24岁左右开始自然变慢',
         ],
       },
+      proGamer: {
+        title: '职业玩家反应时间',
+        games: [
+          {
+            name: '守望先锋',
+            description: '职业守望先锋选手需要闪电般的反应时间来使用即时命中英雄和技能。',
+            avgReaction: '150-180ms',
+            topPlayers: '顶级DPS: 130-150ms, 辅助: 160-200ms',
+          },
+          {
+            name: '英雄联盟',
+            description: 'ADC玩家需要最快的反应时间来躲避技能和定位。',
+            avgReaction: '160-200ms',
+            topPlayers: 'Faker, Uzi: 160-180ms',
+          },
+          {
+            name: 'CS:GO/CS2',
+            description: '职业FPS选手需要卓越的反应时间来进行瞄准对决和探头。',
+            avgReaction: '140-180ms',
+            topPlayers: 's1mple, ZywOo: 130-160ms',
+          },
+          {
+            name: 'Valorant',
+            description: '与CS:GO类似，Valorant职业选手需要快速反应来与对手决斗。',
+            avgReaction: '150-190ms',
+            topPlayers: 'TenZ, scream: 140-170ms',
+          },
+        ],
+      },
+      ageReaction: {
+        title: '按年龄的反应时间',
+        description: '反应时间在你的一生中会发生变化。以下是它如何在年龄组间变化：',
+        ages: [
+          { range: '10-20岁', avgTime: '180-220ms' },
+          { range: '20-30岁', avgTime: '200-240ms' },
+          { range: '30-40岁', avgTime: '200-260ms' },
+          { range: '40-50岁', avgTime: '240-280ms' },
+        ],
+      },
+    },
+    faq: {
+      title: '常见问题',
+      description: '查找关于反应时间测试和改进的常见问题答案。',
+      questions: [
+        {
+          question: '什么是好的反应时间？',
+          answer: '好的反应时间通常被认为是200-250毫秒左右。职业运动员和玩家通常有150-200ms之间的反应时间。普通人的反应时间约为250ms。200ms以下被认为是优秀的，而300ms以上可能需要一些练习。',
+        },
+        {
+          question: '我能提高我的反应时间吗？',
+          answer: '能！通过持续练习可以提高反应时间。研究表明，定期反应时间训练可以在几周内提高速度10-15%。关键是持续练习、充足睡眠、保持水分和良好的整体健康。',
+        },
+        {
+          question: '为什么每次测试我的反应时间都不同？',
+          answer: '由于多种因素，反应时间自然变化：疲劳、压力、咖啡因摄入、一天中的时间，甚至你的注意力水平。测试之间看到20-50ms的变化是正常的。这就是为什么我们建议取多次尝试的平均值。',
+        },
+      ],
+    },
+    guides: {
+      title: '综合指南',
+      description: '详细指南帮助您理解和提高您的反应时间。',
+      sections: [
+        {
+          icon: '🎯',
+          title: '提高反应时间的10种方法',
+          content: [
+            '提高反应时间是生活方式改变和专注练习的结合。这里有10种经过验证的方法可以帮助你反应更快。',
+            '首先，优先考虑睡眠。研究表明，即使是轻微的睡眠不足也会使反应时间减慢10-20%。目标每晚7-9小时高质量睡眠。',
+            '其次，保持身体活跃。定期有氧运动改善大脑血流量并增强神经连接。即使每天30分钟的运动也能产生差异。',
+          ],
+          tips: [
+            '每晚睡7-9小时',
+            '每天锻炼30分钟',
+            '全天保持水分',
+            '在短暂专注的环节中练习',
+            '睡前减少屏幕时间',
+            '冥想以提高注意力',
+            '定期玩需要快速反应的游戏',
+            '长时间游戏期间休息',
+            '保持富含omega-3的均衡饮食',
+            '限制咖啡因摄入以避免崩溃',
+          ],
+        },
+      ],
+    },
+    science: {
+      title: '反应时间的科学',
+      description: '探索反应时间背后的神经和生理机制。',
+      sections: [
+        {
+          icon: '⚡',
+          title: '大脑如何处理反应',
+          content: [
+            '反应时间是一个涉及多个阶段的复杂神经过程：感觉知觉、信息处理、决策制定和运动执行。',
+            '当你看到刺激时，你的眼睛向视觉皮层发送信号。这些信息被处理并与存储的模式进行比较。行动决定在前额叶皮层做出，运动信号通过脊髓发送到你的肌肉。',
+            '整个过程在健康成年人中通常需要150-300毫秒。',
+          ],
+          keyPoints: [
+            '感觉输入 (50-100ms)',
+            '认知处理 (70-100ms)',
+            '运动反应 (30-100ms)',
+            '总计: 平均150-300ms',
+          ],
+        },
+      ],
     },
     about: {
       title: '关于 DreamURL',
@@ -593,11 +1620,40 @@ export const translations: Record<Language, TranslationSet> = {
           '包含游戏推荐的详细性能等级',
           '适配移动设备的响应式设计',
           '无需注册 - 完全免费使用',
+          '完整的FAQ部分',
+          '改进的详细指南',
+          '反应时间的科学解释',
+          '职业玩家比较数据',
         ],
       },
-      team: {
-        title: '关于开发者',
-        content: 'DreamURL由一位热爱创建互动网络体验的前端开发者开发。我们的目标是提供高质量的免费工具，帮助人们了解自己并提高能力。',
+      whyImportant: {
+        title: '反应时间为什么重要',
+        content: '反应时间不仅仅是游戏指标 - 它是影响日常生活的基本认知能力。更快的反应时间可以提高驾驶安全、运动表现和整体认知健康。通过了解和训练您的反应时间，您正在投资于一种在生活无数方面都有应用的技能。',
+      },
+      founders: {
+        title: '我们的团队',
+        members: [
+          {
+            name: 'DreamURL 团队',
+            role: '开发团队',
+            description: '一群热衷于创建高质量网络体验的开发人员和设计师。我们结合了网络开发、用户体验设计和认知科学方面的专业知识，构建既有用又愉快的工具。',
+          },
+          {
+            name: '科学顾问',
+            role: '研究顾问',
+            description: '我们的团队包括神经科学和认知心理学专家，他们确保我们的内容准确并基于最新的科学研究。',
+          },
+        ],
+      },
+      history: {
+        title: '我们的历史',
+        milestones: [
+          { date: '2024年', event: 'DreamURL成立，愿景是创建可访问的认知工具' },
+          { date: '2024年第三季度', event: '反应速度测试第一个版本发布' },
+          { date: '2024年第四季度', event: '添加多语言支持' },
+          { date: '2025年第一季度', event: '添加综合指南和科学部分' },
+          { date: '2025年第二季度', event: '继续扩展新功能和内容' },
+        ],
       },
     },
     privacy: {
@@ -639,6 +1695,8 @@ export const translations: Record<Language, TranslationSet> = {
       description: '有问题、反馈或建议吗？我们很想听到您的声音！请随时通过以下任何渠道与我们联系。',
       email: '电子邮件',
       github: 'GitHub',
+      faq: 'FAQ',
+      faqDescription: '查看我们的FAQ部分以获取常见问题的快速答案。',
       form: {
         name: '您的姓名',
         email: '您的电子邮件',
@@ -649,15 +1707,43 @@ export const translations: Record<Language, TranslationSet> = {
     },
     footer: {
       copyright: '© 2025 DreamURL。保留所有权利。',
-      madeWith: '为全球游戏玩家用 ❤️ 制作',
     },
   },
   ja: {
     nav: {
       home: 'ホーム',
+      faq: 'FAQ',
+      guides: 'ガイド',
+      science: '科学',
       about: 'サイト概要',
       privacy: 'プライバシーポリシー',
       contact: 'お問い合わせ',
+    },
+    hero: {
+      title: '反応時間テスト',
+      subtitle: 'どれくらい速く反応できますか？',
+      description: 'ミリ秒単位で反応速度を発見し、プロゲーマーや平均的な人と比較してみてください。無料、正確、楽しい！',
+      cta: 'テスト開始',
+    },
+    quickTips: {
+      title: 'パフォーマンス向上のためのクイックヒント',
+      tips: [
+        {
+          icon: '😴',
+          title: '十分な睡眠',
+          description: '疲労は反応時間を最大20%まで遅くする可能性があります。質の高い睡眠7〜9時間を目指してください。',
+        },
+        {
+          icon: '💧',
+          title: '水分補給',
+          description: '脱水は認知機能を損ないます。一日中定期的に水を飲んでください。',
+        },
+        {
+          icon: '🎯',
+          title: '定期的な練習',
+          description: '継続的な練習は数週間で反応時間を10〜15%向上させることができます。',
+        },
+      ],
     },
     title: '反応速度テスト',
     introduction: 'これは視覚刺激に対するあなたの反応速度を測定するための簡単なテストです。ルールは簡単です：黒い点が表示されたら、できるだけ早くクリックしてください。後のラウンドでは、おとりの赤い点を避けてください！人間の平均反応時間は約250msです。練習すれば、多くの人が200msに到達できます。何度でも自由にテストしてください。',
@@ -716,6 +1802,111 @@ export const translations: Record<Language, TranslationSet> = {
           '反応時間は24歳頃から自然に遅くなり始める',
         ],
       },
+      proGamer: {
+        title: 'プロゲーマーの反応時間',
+        games: [
+          {
+            name: 'オーバーウォッチ',
+            description: 'プロのオーバーウォッチ選手は、ヒットスキャンヒーローやアビリティ使用のために稲妻のような反応時間が必要です。',
+            avgReaction: '150-180ms',
+            topPlayers: 'トップDPS: 130-150ms, サポート: 160-200ms',
+          },
+          {
+            name: 'リーグ・オブ・レジェンド',
+            description: 'ADCプレイヤーは、スキルショットを回避しポジショニングを取るために最速の反応時間が必要です。',
+            avgReaction: '160-200ms',
+            topPlayers: 'Faker, Uzi: 160-180ms',
+          },
+          {
+            name: 'CS:GO/CS2',
+            description: 'プロのFPS選手は、エイムデュエルとピークのために卓越した反応時間が必要です。',
+            avgReaction: '140-180ms',
+            topPlayers: 's1mple, ZywOo: 130-160ms',
+          },
+          {
+            name: 'Valorant',
+            description: 'CS:GOと同様に、Valorantのプロは対戦相手とデュエルするために迅速な反応が必要です。',
+            avgReaction: '150-190ms',
+            topPlayers: 'TenZ, scream: 140-170ms',
+          },
+        ],
+      },
+      ageReaction: {
+        title: '年齢別の反応時間',
+        description: '反応時間は一生の間で変化します。年齢グループごとにどのように変化するかを確認してください：',
+        ages: [
+          { range: '10-20歳', avgTime: '180-220ms' },
+          { range: '20-30歳', avgTime: '200-240ms' },
+          { range: '30-40歳', avgTime: '220-260ms' },
+          { range: '40-50歳', avgTime: '240-280ms' },
+        ],
+      },
+    },
+    faq: {
+      title: 'よくある質問',
+      description: '反応時間テストと改善に関する一般的な質問への回答を見つけてください。',
+      questions: [
+        {
+          question: '良い反応時間とは？',
+          answer: '良い反応時間は通常200〜250ミリ秒程度と考えられています。プロのアスリートやゲーマーはしばしば150〜200msの反応時間を持っています。平均的な人の反応時間は約250msです。200ms以下は優秀と見なされ、300ms以上は少し練習が必要かもしれません。',
+        },
+        {
+          question: '反応時間を改善できますか？',
+          answer: 'はい！継続的な練習で反応時間を改善できます。研究によると、定期的な反応時間トレーニングは数週間で速度を10〜15%向上させることができます。鍵は継続的な練習、十分な睡眠、水分補給、良好な全体的な健康状態です。',
+        },
+        {
+          question: 'テストするたびに反応時間が違うのはなぜですか？',
+          answer: '反応時間は疲労、ストレス、カフェイン摂取、1日の時間、集中レベルなど、さまざまな要因により自然に変化します。テスト間で20〜50msの変化を見るのは正常です。これが複数回の試行の平均を推奨する理由です。',
+        },
+      ],
+    },
+    guides: {
+      title: '包括的なガイド',
+      description: '反応時間を理解し改善するのに役立つ詳細なガイドです。',
+      sections: [
+        {
+          icon: '🎯',
+          title: '反応時間を改善する10の方法',
+          content: [
+            '反応時間の改善は、ライフスタイルの変化と専念した練習の組み合わせです。より速く反応するのに役立つ10の実証された方法があります。',
+            '第一に、睡眠を優先してください。研究によると、軽度の睡眠不足でさえ反応時間を10〜20%遅くすることができます。毎晩7〜9時間の質の高い睡眠を目指してください。',
+            '第二に、身体的に活動的に過ごしてください。定期的な有酸素運動は脳への血流を改善し、神経接続を強化します。毎日30分の運動でも違いを生むことができます。',
+          ],
+          tips: [
+            '毎晩7〜9時間の睡眠をとる',
+            '毎日30分運動する',
+            '一日中水分を補給する',
+            '短く集中したセッションで練習する',
+            '寝る前のスクリーン時間を減らす',
+            '集中力を高めるために瞑想する',
+            '定期的に反射神経が必要なゲームをプレイする',
+            '長時間のゲームセッション中に休憩を取る',
+            'オメガ3が豊富なバランスの取れた食事を維持する',
+            'カフェインクラッシュを避けるためにカフェイン摂取を制限する',
+          ],
+        },
+      ],
+    },
+    science: {
+      title: '反応時間の科学',
+      description: '反応時間の背後にある神経学的および生理学的メカニズムを探索してください。',
+      sections: [
+        {
+          icon: '⚡',
+          title: '脳が反応を処理する方法',
+          content: [
+            '反応時間は、感覚知覚、情報処理、意思決定、運動実行を含む複雑な神経プロセスです。',
+            '刺激を見ると、目は視覚皮質に信号を送ります。この情報は処理され、保存されたパターンと比較されます。行動の決定は前頭前野皮質で行われ、運動信号は脊髄を通じて筋肉に送信されます。',
+            'プロセス全体は健康な成人で通常150〜300ミリ秒かかります。',
+          ],
+          keyPoints: [
+            '感覚入力 (50-100ms)',
+            '認知処理 (70-100ms)',
+            '運動反応 (30-100ms)',
+            '合計: 平均150-300ms',
+          ],
+        },
+      ],
     },
     about: {
       title: 'DreamURLについて',
@@ -732,11 +1923,40 @@ export const translations: Record<Language, TranslationSet> = {
           'ゲーム推奨を含む詳細なパフォーマンスグレード',
           'モバイルフレンドリーなレスポンシブデザイン',
           '登録不要 - 完全無料で使用可能',
+          '完全なFAQセクション',
+          '改善のための詳細なガイド',
+          '反応時間の科学的説明',
+          'プロゲーマー比較データ',
         ],
       },
-      team: {
-        title: '開発者について',
-        content: 'DreamURLは、インタラクティブなウェブ体験を作成することが大好きな情熱的なフロントエンド開発者によって開発されています。私たちの目標は、人々が自分自身について学び、能力を向上させるのに役立つ高品質の無料ツールを提供することです。',
+      whyImportant: {
+        title: '反応時間が重要な理由',
+        content: '反応時間は単なるゲーム指標ではありません - 日常生活に影響を与える基本的な認知能力です。より速い反応時間は、運転の安全性、スポーツのパフォーマンス、全体的な認知的健康を向上させることができます。反応時間を理解してトレーニングすることで、人生の無数の側面に応用されるスキルに投資しています。',
+      },
+      founders: {
+        title: '私たちのチーム',
+        members: [
+          {
+            name: 'DreamURLチーム',
+            role: '開発チーム',
+            description: '高品質なウェブエクスペリエンスを作成することに情熱的な開発者とデザイナーのグループです。ウェブ開発、ユーザーエクスペリエンスデザイン、認知科学の専門知識を組み合わせて、有用で楽しいツールを構築しています。',
+          },
+          {
+            name: '科学アドバイザー',
+            role: '研究コンサルタント',
+            description: '私たちのチームには、コンテンツが正確であり、最新の科学研究に基づいていることを確保する神経科学および認知心理学の専門家が含まれています。',
+          },
+        ],
+      },
+      history: {
+        title: '私たちの歴史',
+        milestones: [
+          { date: '2024年', event: 'アクセシブルな認知ツールを作成するというビジョンでDreamURL設立' },
+          { date: '2024年第3四半期', event: '反応速度テストの最初のバージョンリリース' },
+          { date: '2024年第4四半期', event: '多言語対応の追加' },
+          { date: '2025年第1四半期', event: '包括的なガイドと科学セクションの追加' },
+          { date: '2025年第2四半期', event: '新機能とコンテンツによる継続的な拡張' },
+        ],
       },
     },
     privacy: {
@@ -757,11 +1977,11 @@ export const translations: Record<Language, TranslationSet> = {
         },
         {
           title: 'データセキュリティ',
-          content: '個人データを収集しないため、リスクにさらされる個人情報はありません。すべてのゲームデータはブラウザ内でローカルに処理されます。',
+          content: '個人情報を収集しないため、リスクにさらされる個人情報はありません。すべてのゲームデータはブラウザ内でローカルに処理されます。',
         },
         {
           title: 'お子様のプライバシー',
-          content: '当サービスはすべての年齢のユーザーが利用できます。13歳未満のお子様を含め、誰からも個人情報を意図的に収集することはありません。',
+          content: '当サービスはすべての年齢のユーザーが利用できます。13歳未満のお子様を含め、誰からも個人情報を意識的に収集することはありません。',
         },
         {
           title: 'ポリシーの変更',
@@ -778,6 +1998,8 @@ export const translations: Record<Language, TranslationSet> = {
       description: 'ご質問、フィードバック、ご提案はありますか？ぜひお聞かせください！以下のいずれかのチャンネルからお気軽にお問い合わせください。',
       email: 'メール',
       github: 'GitHub',
+      faq: 'FAQ',
+      faqDescription: '一般的な質問への迅速な回答については、FAQセクションを確認してください。',
       form: {
         name: 'お名前',
         email: 'メールアドレス',
@@ -788,7 +2010,6 @@ export const translations: Record<Language, TranslationSet> = {
     },
     footer: {
       copyright: '© 2025 DreamURL. All rights reserved.',
-      madeWith: '世界中のゲーマーのために❤️で作られました',
     },
   },
 };
