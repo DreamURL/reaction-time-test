@@ -1,4 +1,4 @@
-name: Deploy to dreamurl.github.io
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -9,6 +9,10 @@ permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
